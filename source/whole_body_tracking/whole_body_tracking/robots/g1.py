@@ -26,7 +26,7 @@ G1_CYLINDER_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
         fix_base=False,
         replace_cylinders_with_capsules=True,
-        asset_path=f"{ASSET_DIR}/unitree_description/urdf/g1/main.urdf",
+        asset_path=f"{ASSET_DIR}/g1_description/g1_23dof_rev_1_0.urdf",
         activate_contact_sensors=True,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
             disable_gravity=False,
@@ -106,21 +106,13 @@ G1_CYLINDER_CFG = ArticulationCfg(
             damping=2.0 * DAMPING_5020,
             armature=2.0 * ARMATURE_5020,
         ),
-        "waist": ImplicitActuatorCfg(
-            effort_limit_sim=50,
-            velocity_limit_sim=37.0,
-            joint_names_expr=["waist_roll_joint", "waist_pitch_joint"],
-            stiffness=2.0 * STIFFNESS_5020,
-            damping=2.0 * DAMPING_5020,
-            armature=2.0 * ARMATURE_5020,
-        ),
         "waist_yaw": ImplicitActuatorCfg(
-            effort_limit_sim=88,
-            velocity_limit_sim=32.0,
+            effort_limit_sim=139,
+            velocity_limit_sim=20.0,
             joint_names_expr=["waist_yaw_joint"],
-            stiffness=STIFFNESS_7520_14,
-            damping=DAMPING_7520_14,
-            armature=ARMATURE_7520_14,
+            stiffness=STIFFNESS_7520_22,
+            damping=DAMPING_7520_22,
+            armature=ARMATURE_7520_22,
         ),
         "arms": ImplicitActuatorCfg(
             joint_names_expr=[
@@ -129,8 +121,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint",
                 ".*_elbow_joint",
                 ".*_wrist_roll_joint",
-                ".*_wrist_pitch_joint",
-                ".*_wrist_yaw_joint",
             ],
             effort_limit_sim={
                 ".*_shoulder_pitch_joint": 25.0,
@@ -138,8 +128,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint": 25.0,
                 ".*_elbow_joint": 25.0,
                 ".*_wrist_roll_joint": 25.0,
-                ".*_wrist_pitch_joint": 5.0,
-                ".*_wrist_yaw_joint": 5.0,
             },
             velocity_limit_sim={
                 ".*_shoulder_pitch_joint": 37.0,
@@ -147,8 +135,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint": 37.0,
                 ".*_elbow_joint": 37.0,
                 ".*_wrist_roll_joint": 37.0,
-                ".*_wrist_pitch_joint": 22.0,
-                ".*_wrist_yaw_joint": 22.0,
             },
             stiffness={
                 ".*_shoulder_pitch_joint": STIFFNESS_5020,
@@ -156,8 +142,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint": STIFFNESS_5020,
                 ".*_elbow_joint": STIFFNESS_5020,
                 ".*_wrist_roll_joint": STIFFNESS_5020,
-                ".*_wrist_pitch_joint": STIFFNESS_4010,
-                ".*_wrist_yaw_joint": STIFFNESS_4010,
             },
             damping={
                 ".*_shoulder_pitch_joint": DAMPING_5020,
@@ -165,8 +149,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint": DAMPING_5020,
                 ".*_elbow_joint": DAMPING_5020,
                 ".*_wrist_roll_joint": DAMPING_5020,
-                ".*_wrist_pitch_joint": DAMPING_4010,
-                ".*_wrist_yaw_joint": DAMPING_4010,
             },
             armature={
                 ".*_shoulder_pitch_joint": ARMATURE_5020,
@@ -174,8 +156,6 @@ G1_CYLINDER_CFG = ArticulationCfg(
                 ".*_shoulder_yaw_joint": ARMATURE_5020,
                 ".*_elbow_joint": ARMATURE_5020,
                 ".*_wrist_roll_joint": ARMATURE_5020,
-                ".*_wrist_pitch_joint": ARMATURE_4010,
-                ".*_wrist_yaw_joint": ARMATURE_4010,
             },
         ),
     },

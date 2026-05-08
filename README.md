@@ -94,6 +94,7 @@ This will automatically upload the processed motion file to the WandB registry w
 - Test if the WandB registry works properly by replaying the motion in Isaac Sim:
 
 ```bash
+export WANDB_ENTITY="algoritmus" #export your own team
 python scripts/replay_npz.py --registry_name={your-organization}-org/wandb-registry-motions/{motion_name}
 ```
 
@@ -103,10 +104,10 @@ python scripts/replay_npz.py --registry_name={your-organization}-org/wandb-regis
 
 ### Policy Training
 
-- Train policy by the following command:
+- Train policy by the following command: if u want depoly on real robot, make sure use Tracking-Flat-G1-Wo-State-Estimation-v0 task.
 
 ```bash
-python scripts/rsl_rl/train.py --task=Tracking-Flat-G1-v0 \
+python scripts/rsl_rl/train.py --task=Tracking-Flat-G1-Wo-State-Estimation-v0 \
 --registry_name {your-organization}-org/wandb-registry-motions/{motion_name} \
 --headless --logger wandb --log_project_name {project_name} --run_name {run_name}
 ```
@@ -116,7 +117,7 @@ python scripts/rsl_rl/train.py --task=Tracking-Flat-G1-v0 \
 - Play the trained policy by the following command:
 
 ```bash
-python scripts/rsl_rl/play.py --task=Tracking-Flat-G1-v0 --num_envs=2 --wandb_path={wandb-run-path}
+python scripts/rsl_rl/play.py --task=task=Tracking-Flat-G1-Wo-State-Estimation-v0 --num_envs=2 --wandb_path={wandb-run-path}
 ```
 
 The WandB run path can be located in the run overview. It follows the format {your_organization}/{project_name}/ along

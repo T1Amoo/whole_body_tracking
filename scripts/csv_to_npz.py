@@ -3,6 +3,10 @@
 .. code-block:: bash
 
     # Usage
+    export WANDB_ENTITY="algoritmus"
+    python scripts/csv_to_npz.py --input_file g123_qie_motion.csv --input_fps 30 --output_name g123_qie_motion --headless
+    python scripts/replay_npz.py --registry_name=woan/wandb-registry-motions/g123_qie_motion
+
     python csv_to_npz.py --input_file LAFAN/dance1_subject2.csv --input_fps 30 --frame_range 122 722 \
     --output_file ./motions/dance1_subject2.npz --output_fps 50
 """
@@ -117,6 +121,12 @@ class MotionLoader:
         self.motion_base_rots_input = motion[:, 3:7]
         self.motion_base_rots_input = self.motion_base_rots_input[:, [3, 0, 1, 2]]  # convert to wxyz
         self.motion_dof_poss_input = motion[:, 7:]
+
+        # CSV is in 29-DoF G1 ordering; drop columns for waist_roll/pitch and wrist_pitch/yaw
+        # to map onto the 23-DoF G1 joint order used by this script.
+        if self.motion_dof_poss_input.shape[1] == 29:
+            keep_idx_29_to_23 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26]
+            self.motion_dof_poss_input = self.motion_dof_poss_input[:, keep_idx_29_to_23]
 
         self.input_frames = motion.shape[0]
         self.duration = (self.input_frames - 1) * self.input_dt
@@ -342,22 +352,16 @@ def main():
             "right_ankle_pitch_joint",
             "right_ankle_roll_joint",
             "waist_yaw_joint",
-            "waist_roll_joint",
-            "waist_pitch_joint",
             "left_shoulder_pitch_joint",
             "left_shoulder_roll_joint",
             "left_shoulder_yaw_joint",
             "left_elbow_joint",
             "left_wrist_roll_joint",
-            "left_wrist_pitch_joint",
-            "left_wrist_yaw_joint",
             "right_shoulder_pitch_joint",
             "right_shoulder_roll_joint",
             "right_shoulder_yaw_joint",
             "right_elbow_joint",
             "right_wrist_roll_joint",
-            "right_wrist_pitch_joint",
-            "right_wrist_yaw_joint",
         ],
     )
 

@@ -24,10 +24,10 @@ class G1FlatEnvCfg(TrackingEnvCfg):
             "torso_link",
             "left_shoulder_roll_link",
             "left_elbow_link",
-            "left_wrist_yaw_link",
+            "left_wrist_roll_rubber_hand",
             "right_shoulder_roll_link",
             "right_elbow_link",
-            "right_wrist_yaw_link",
+            "right_wrist_roll_rubber_hand",
         ]
 
 

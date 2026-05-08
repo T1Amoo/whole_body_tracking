@@ -242,7 +242,7 @@ class RewardsCfg:
             "sensor_cfg": SceneEntityCfg(
                 "contact_forces",
                 body_names=[
-                    r"^(?!left_ankle_roll_link$)(?!right_ankle_roll_link$)(?!left_wrist_yaw_link$)(?!right_wrist_yaw_link$).+$"
+                    r"^(?!left_ankle_roll_link$)(?!right_ankle_roll_link$)(?!left_wrist_roll_rubber_hand$)(?!right_wrist_roll_rubber_hand$).+$"
                 ],
             ),
             "threshold": 1.0,
@@ -271,8 +271,8 @@ class TerminationsCfg:
             "body_names": [
                 "left_ankle_roll_link",
                 "right_ankle_roll_link",
-                "left_wrist_yaw_link",
-                "right_wrist_yaw_link",
+                "left_wrist_roll_rubber_hand",
+                "right_wrist_roll_rubber_hand",
             ],
         },
     )
